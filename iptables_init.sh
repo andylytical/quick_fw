@@ -71,7 +71,7 @@ enable_iptables() {
 	yum -y install iptables-services ebtables ipset-service
 	systemctl enable --now iptables.service
 	systemctl enable --now ip6tables.service
-	systemctl enable --now etables.service
+	systemctl enable --now ebtables.service
 	systemctl enable --now ipset.service
 }
  
@@ -79,9 +79,6 @@ enable_iptables() {
 service_pre() {
   disable_firewalld
   enable_iptables
-  for svc in iptables ip6tables etables ipset; do
-    systemctl enable --now "$svc"
-  done
 }
  
  
